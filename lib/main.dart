@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:quiz1/quiz_brain.dart';
+QuizBrain quizBrain=QuizBrain();
 void main() {
   runApp(Quiz());
 }
@@ -28,9 +29,12 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
 
-  // ✅ State belongs here
+  //  State belongs here
   List<Icon> scoreKeeper = [];
 
+
+
+int questionNumber =0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,7 +48,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                "This is where the question text will appear",
+               quizBrain.questionsList[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -69,10 +73,17 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                setState(() {
-                  scoreKeeper.add(
-                    Icon(Icons.check, color: Colors.green),
-                  );
+              setState(() {
+              // User clicked true
+              quizBrain.questionsList[questionNumber].answer = true;
+              bool correctAnswer=quizBrain.questionsList[questionNumber].answer;
+              if(correctAnswer == true){
+              print('User chose the right answer.' );
+              }else{
+              print('User chose the wrong answer.');
+              }
+              questionNumber++;
+              print("Question number: $questionNumber");
                 });
               },
               child: Text("True"),
@@ -95,9 +106,15 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  scoreKeeper.add(
-                    Icon(Icons.close, color: Colors.red),
-                  );
+                  // User clicked true
+                  bool correctAnswer=quizBrain.questionsList[questionNumber].answer;
+                  if(correctAnswer == false){
+                    print('User chose the right answer.' );
+                  }else{
+                    print('User chose the wrong answer.');
+                  }
+                  questionNumber++;
+                  print("Question number: $questionNumber");
                 });
               },
               child: Text("False"),
