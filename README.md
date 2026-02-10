@@ -1,6 +1,6 @@
-# quiz1
+# quizMobileApp
 
-A new Flutter project.
+A new project which is completed a Flutter quiz app by detecting when the quiz ends, displaying the final result, and resetting the quiz to start again. This task helps you practice dialogs, external packages, conditional logic, and basic state management in Flutter.
 
 ## Getting Started
 
